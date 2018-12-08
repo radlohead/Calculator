@@ -11,7 +11,7 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 		   plusOperator, minusOperator, multiplicationOperator, divisionOperator, signOperator, exit;
 	TextArea ta;
 	private int result = 0;
-	private List<String> list = new ArrayList<String>();
+	private String tempStr = "";
 	private String lastOperator = "";
 	
 	public ActionEventCreate(){
@@ -101,71 +101,71 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 		
 		if(val.equals("0")) {
 			ta.append("0");
-			list.add(val);
+			tempStr += val;
 			ta.setText("");
 			ta.append(Integer.toString(result));
 		}
 		
 		if(val.equals("1")) {
 			ta.append("1");
-			list.add(val);
+			tempStr += val;
 			ta.setText("");
 			ta.append(Integer.toString(result));
 		}
 		
 		if(val.equals("2")) {
 			ta.append("2");
-			list.add(val);
-			System.out.println(list);
+			tempStr += val;
+			System.out.println(tempStr);
 			ta.setText("");
 			ta.append(Integer.toString(result));
 		}
 		
 		if(val.equals("3")) {
 			ta.append("3");
-			list.add(val);
+			tempStr += val;
 			ta.setText("");
 			ta.append(Integer.toString(result));
 		}
 		
 		if(val.equals("4")) {
 			ta.append("4");
-			list.add(val);
+			tempStr += val;
 			ta.setText("");
 			ta.append(Integer.toString(result));
 		}
 		
 		if(val.equals("5")) {
 			ta.append("5");
-			list.add(val);
+			tempStr += val;
 			ta.setText("");
 			ta.append(Integer.toString(result));
 		}
 		
 		if(val.equals("6")) {
 			ta.append("6");
-			list.add(val);
+			tempStr += val;
 			ta.setText("");
 			ta.append(Integer.toString(result));
 		}
 		
 		if(val.equals("7")) {
 			ta.append("7");
-			list.add(val);
+			tempStr += val;
 			ta.setText("");
 			ta.append(Integer.toString(result));
 		}
 		
 		if(val.equals("8")) {
 			ta.append("8");
-			list.add(val);
+			tempStr += val;
 			ta.setText("");
 			ta.append(Integer.toString(result));
 		}
 		
 		if(val.equals("9")) {
 			ta.append("9");
-			list.add(val);
+			tempStr += val;
 			ta.setText("");
 			ta.append(Integer.toString(result));
 		}
@@ -173,15 +173,15 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 		if(val.equals("+")) {
 			lastOperator = "+";
 			
-			if (list.size() == 0) {
-				System.out.println("out");
+			if (tempStr == "") {
 				return;
 			}
 			
-			System.out.println(list);
+			System.out.println(tempStr);
+			System.out.println(result);
 			
-			result += Integer.parseInt(list.get(0));
-			list.removeAll(list);
+			result += Integer.parseInt(tempStr);
+			tempStr = "";
 			ta.setText("");
 			ta.append(Integer.toString(result));
 		}
@@ -189,12 +189,12 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 		if(val.equals("-")) {
 			lastOperator = "-";
 			
-			if (list.size() == 0) {
+			if (tempStr == "") {
 				return;
 			}
 			
-			result -= Integer.parseInt(list.get(0));
-			list.removeAll(list);
+			result -= Integer.parseInt(tempStr);
+			tempStr = "";
 			ta.setText("");
 			ta.append(Integer.toString(result));
 		}
@@ -202,12 +202,12 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 		if(val.equals("*")) {
 			lastOperator = "*";
 			
-			if (list.size() == 0) {
+			if (tempStr == "") {
 				return;
 			}
 			
-			result *= Integer.parseInt(list.get(0));
-			list.removeAll(list);
+			result *= Integer.parseInt(tempStr);
+			tempStr = "";
 			ta.setText("");
 			ta.append(Integer.toString(result));
 		}
@@ -215,12 +215,12 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 		if(val.equals("/")) {
 			lastOperator = "/";
 			
-			if (list.size() == 0) {
+			if (tempStr == "") {
 				return;
 			}
 			
-			result /= Integer.parseInt(list.get(0));
-			list.removeAll(list);
+			result /= Integer.parseInt(tempStr);
+			tempStr = "";
 			ta.setText("");
 			ta.append(Integer.toString(result));
 		}
@@ -228,20 +228,20 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 		if(val.equals("=")) {
 			switch(lastOperator) {
 				case "+":
-					result += Integer.parseInt(list.get(0));
-					list.removeAll(list);
+					result += Integer.parseInt(tempStr);
+					tempStr = "";
 					break;
 				case "-":
-					result -= Integer.parseInt(list.get(0));
-					list.removeAll(list);
+					result -= Integer.parseInt(tempStr);
+					tempStr = "";
 					break;
 				case "*":
-					result *= Integer.parseInt(list.get(0));
-					list.removeAll(list);
+					result *= Integer.parseInt(tempStr);
+					tempStr = "";
 					break;
 				case "/":
-					result /= Integer.parseInt(list.get(0));
-					list.removeAll(list);
+					result /= Integer.parseInt(tempStr);
+					tempStr = "";
 					break;
 			}
 			
