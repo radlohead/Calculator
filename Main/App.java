@@ -99,159 +99,113 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 //			}
 //		}
 		
-		if(val.equals("0")) {
-			ta.append("0");
-			tempStr += val;
-			ta.setText("");
-			ta.append(Integer.toString(result));
-		}
-		
-		if(val.equals("1")) {
-			ta.append("1");
-			tempStr += val;
-			ta.setText("");
-			ta.append(Integer.toString(result));
-		}
-		
-		if(val.equals("2")) {
-			ta.append("2");
-			tempStr += val;
-			System.out.println(tempStr);
-			ta.setText("");
-			ta.append(Integer.toString(result));
-		}
-		
-		if(val.equals("3")) {
-			ta.append("3");
-			tempStr += val;
-			ta.setText("");
-			ta.append(Integer.toString(result));
-		}
-		
-		if(val.equals("4")) {
-			ta.append("4");
-			tempStr += val;
-			ta.setText("");
-			ta.append(Integer.toString(result));
-		}
-		
-		if(val.equals("5")) {
-			ta.append("5");
-			tempStr += val;
-			ta.setText("");
-			ta.append(Integer.toString(result));
-		}
-		
-		if(val.equals("6")) {
-			ta.append("6");
-			tempStr += val;
-			ta.setText("");
-			ta.append(Integer.toString(result));
-		}
-		
-		if(val.equals("7")) {
-			ta.append("7");
-			tempStr += val;
-			ta.setText("");
-			ta.append(Integer.toString(result));
-		}
-		
-		if(val.equals("8")) {
-			ta.append("8");
-			tempStr += val;
-			ta.setText("");
-			ta.append(Integer.toString(result));
-		}
-		
-		if(val.equals("9")) {
-			ta.append("9");
+		if(val.equals("0") || val.equals("1") || val.equals("2") || val.equals("3") || val.equals("4") ||
+				val.equals("5") || val.equals("6") || val.equals("7") || val.equals("8") || val.equals("9")) {
+			ta.append(val);
 			tempStr += val;
 			ta.setText("");
 			ta.append(Integer.toString(result));
 		}
 		
 		if(val.equals("+")) {
-			lastOperator = "+";
-			
-			if (tempStr == "") {
-				return;
-			}
-			
-			System.out.println(tempStr);
-			System.out.println(result);
-			
-			result += Integer.parseInt(tempStr);
-			tempStr = "";
-			ta.setText("");
-			ta.append(Integer.toString(result));
+			this.sum();
 		}
 		
 		if(val.equals("-")) {
-			lastOperator = "-";
-			
-			if (tempStr == "") {
-				return;
-			}
-			
-			result -= Integer.parseInt(tempStr);
-			tempStr = "";
-			ta.setText("");
-			ta.append(Integer.toString(result));
+			this.minus();
 		}
 		
 		if(val.equals("*")) {
-			lastOperator = "*";
-			
-			if (tempStr == "") {
-				return;
-			}
-			
-			result *= Integer.parseInt(tempStr);
-			tempStr = "";
-			ta.setText("");
-			ta.append(Integer.toString(result));
+			this.multiplicationOperator();
 		}
 		
 		if(val.equals("/")) {
-			lastOperator = "/";
-			
-			if (tempStr == "") {
-				return;
-			}
-			
-			result /= Integer.parseInt(tempStr);
-			tempStr = "";
-			ta.setText("");
-			ta.append(Integer.toString(result));
+			this.divisionOperator();
 		}
 		
 		if(val.equals("=")) {
-			switch(lastOperator) {
-				case "+":
-					result += Integer.parseInt(tempStr);
-					tempStr = "";
-					break;
-				case "-":
-					result -= Integer.parseInt(tempStr);
-					tempStr = "";
-					break;
-				case "*":
-					result *= Integer.parseInt(tempStr);
-					tempStr = "";
-					break;
-				case "/":
-					result /= Integer.parseInt(tempStr);
-					tempStr = "";
-					break;
-			}
-			
-			ta.setText("");
-			ta.append(Integer.toString(result));
+			this.switchOperator();
 		}
 		
 		if (val.equals("종료")) {
 			System.exit(0);			
 		}
+	}
+	
+	public void sum() {
+		lastOperator = "+";
+		
+		if (tempStr == "") {
+			return;
+		}
+		
+		result += Integer.parseInt(tempStr);
+		tempStr = "";
+		ta.setText("");
+		ta.append(Integer.toString(result));
+	}
+	
+	private void minus() {
+		lastOperator = "-";
+		
+		if (tempStr == "") {
+			return;
+		}
+		
+		result -= Integer.parseInt(tempStr);
+		tempStr = "";
+		ta.setText("");
+		ta.append(Integer.toString(result));
+	}
+	
+	private void multiplicationOperator() {
+		lastOperator = "*";
+		
+		if (tempStr == "") {
+			return;
+		}
+		
+		result *= Integer.parseInt(tempStr);
+		tempStr = "";
+		ta.setText("");
+		ta.append(Integer.toString(result));
+	}
+	
+	private void divisionOperator() {
+		lastOperator = "/";
+		
+		if (tempStr == "") {
+			return;
+		}
+		
+		result /= Integer.parseInt(tempStr);
+		tempStr = "";
+		ta.setText("");
+		ta.append(Integer.toString(result));
+	}
+	
+	private void switchOperator() {
+		switch(lastOperator) {
+			case "+":
+				result += Integer.parseInt(tempStr);
+				tempStr = "";
+				break;
+			case "-":
+				result -= Integer.parseInt(tempStr);
+				tempStr = "";
+				break;
+			case "*":
+				result *= Integer.parseInt(tempStr);
+				tempStr = "";
+				break;
+			case "/":
+				result /= Integer.parseInt(tempStr);
+				tempStr = "";
+				break;
+		}
+		
+		ta.setText("");
+		ta.append(Integer.toString(result));
 	}
 
 	@Override
