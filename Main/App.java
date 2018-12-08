@@ -79,7 +79,6 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 		add(ta, BorderLayout.NORTH);
 		add(p, BorderLayout.CENTER);
 		
-//		ta.setBounds(0, 0, 50, 50);
 		setBounds(500,100,500,500);
 		setVisible(true);
 	}
@@ -103,68 +102,91 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 		if(val.equals("0")) {
 			ta.append("0");
 			list.add(val);
+			ta.setText("");
+			ta.append(Integer.toString(result));
 		}
 		
 		if(val.equals("1")) {
 			ta.append("1");
 			list.add(val);
+			ta.setText("");
+			ta.append(Integer.toString(result));
 		}
 		
 		if(val.equals("2")) {
 			ta.append("2");
 			list.add(val);
+			System.out.println(list);
+			ta.setText("");
+			ta.append(Integer.toString(result));
 		}
 		
 		if(val.equals("3")) {
 			ta.append("3");
 			list.add(val);
+			ta.setText("");
+			ta.append(Integer.toString(result));
 		}
 		
 		if(val.equals("4")) {
 			ta.append("4");
 			list.add(val);
+			ta.setText("");
+			ta.append(Integer.toString(result));
 		}
 		
 		if(val.equals("5")) {
 			ta.append("5");
 			list.add(val);
+			ta.setText("");
+			ta.append(Integer.toString(result));
 		}
 		
 		if(val.equals("6")) {
 			ta.append("6");
 			list.add(val);
+			ta.setText("");
+			ta.append(Integer.toString(result));
 		}
 		
 		if(val.equals("7")) {
 			ta.append("7");
 			list.add(val);
+			ta.setText("");
+			ta.append(Integer.toString(result));
 		}
 		
 		if(val.equals("8")) {
 			ta.append("8");
 			list.add(val);
+			ta.setText("");
+			ta.append(Integer.toString(result));
 		}
 		
 		if(val.equals("9")) {
 			ta.append("9");
 			list.add(val);
+			ta.setText("");
+			ta.append(Integer.toString(result));
 		}
 		
 		if(val.equals("+")) {
-			ta.append("+");
 			lastOperator = "+";
 			
 			if (list.size() == 0) {
+				System.out.println("out");
 				return;
 			}
 			
+			System.out.println(list);
+			
 			result += Integer.parseInt(list.get(0));
 			list.removeAll(list);
-			System.out.println(result);
+			ta.setText("");
+			ta.append(Integer.toString(result));
 		}
 		
 		if(val.equals("-")) {
-			ta.append("-");
 			lastOperator = "-";
 			
 			if (list.size() == 0) {
@@ -173,11 +195,11 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 			
 			result -= Integer.parseInt(list.get(0));
 			list.removeAll(list);
-			System.out.println(result);
+			ta.setText("");
+			ta.append(Integer.toString(result));
 		}
 		
 		if(val.equals("*")) {
-			ta.append("*");
 			lastOperator = "*";
 			
 			if (list.size() == 0) {
@@ -186,11 +208,11 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 			
 			result *= Integer.parseInt(list.get(0));
 			list.removeAll(list);
-			System.out.println(result);
+			ta.setText("");
+			ta.append(Integer.toString(result));
 		}
 		
 		if(val.equals("/")) {
-			ta.append("/");
 			lastOperator = "/";
 			
 			if (list.size() == 0) {
@@ -199,12 +221,11 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 			
 			result /= Integer.parseInt(list.get(0));
 			list.removeAll(list);
-			System.out.println(result);
+			ta.setText("");
+			ta.append(Integer.toString(result));
 		}
 		
 		if(val.equals("=")) {
-			ta.append("=");
-			
 			switch(lastOperator) {
 				case "+":
 					result += Integer.parseInt(list.get(0));
@@ -224,12 +245,9 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 					break;
 			}
 			
+			ta.setText("");
 			ta.append(Integer.toString(result));
 		}
-		
-//		System.out.println(lastOperator);
-		System.out.println(result);
-//		System.out.println(list);
 		
 		if (val.equals("종료")) {
 			System.exit(0);			
@@ -279,11 +297,6 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 
 public class App {
 	public static void main(String[] args) {
-//		FrameCreate f = new FrameCreate();
-//		ButtonCreate b = new ButtonCreate();
-//		RadioButtonCreate radio = new RadioButtonCreate();
-//		TextFieldCreate tf = new TextFieldCreate();
-//		WindowEventCreate we = new WindowEventCreate();
 		ActionEventCreate ae = new ActionEventCreate();
 	}
 }
