@@ -24,11 +24,6 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 		
 		add(defaultExit);
 		
-		for(int i=0; i<=9; i++) {
-			Button number = new Button(Integer.toString(i));
-			listButtons.add(number);
-		}
-		
 		plusOperator = new Button("+");
 		minusOperator = new Button("-");
 		multiplicationOperator = new Button("*");
@@ -36,10 +31,6 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 		signOperator = new Button("=");
 		exit = new Button("종료");
 		ta = new TextArea();
-		
-		for(int i=0; i<listButtons.size(); i++) {
-			listButtons.get(i).addActionListener(this);
-		}
 		
 		plusOperator.addActionListener(this);
 		minusOperator.addActionListener(this);
@@ -49,9 +40,12 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 		exit.addActionListener(this);
 		
 		addWindowListener(this);
-		
-		for(int i=0; i<listButtons.size(); i++) {
-			p.add(listButtons.get(i));			
+
+		for(int i=0; i<=9; i++) {
+			Button number = new Button(Integer.toString(i));
+			listButtons.add(number);
+			listButtons.get(i).addActionListener(this);
+			p.add(listButtons.get(i));
 		}
 		
 		p.add(plusOperator);
