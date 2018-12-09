@@ -8,8 +8,8 @@ import java.util.regex.Pattern;
 
 class ActionEventCreate<T> extends Frame implements ActionListener, WindowListener {
 	Panel p;
-	Button plusOperator, minusOperator, multiplicationOperator, divisionOperator, signOperator, exit;
-	List<Button> listButtons = new ArrayList<Button>();
+	Button number0, number1, number2, number3, number4, number5, number6, number7, number8, number9, 
+		   plusOperator, minusOperator, multiplicationOperator, divisionOperator, signOperator, exit;
 	TextArea ta;
 	private int result = 0;
 	private String tempStr = "";
@@ -24,11 +24,16 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 		
 		add(defaultExit);
 		
-		for(int i=0; i<=9; i++) {
-			Button number = new Button(Integer.toString(i));
-			listButtons.add(number);
-		}
-		
+		number0 = new Button("0");
+		number1 = new Button("1");
+		number2 = new Button("9");
+		number3 = new Button("2");
+		number4 = new Button("3");
+		number5 = new Button("4");
+		number6 = new Button("5");
+		number7 = new Button("6");
+		number8 = new Button("7");
+		number9 = new Button("8");
 		plusOperator = new Button("+");
 		minusOperator = new Button("-");
 		multiplicationOperator = new Button("*");
@@ -37,10 +42,16 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 		exit = new Button("종료");
 		ta = new TextArea();
 		
-		for(int i=0; i<listButtons.size(); i++) {
-			listButtons.get(i).addActionListener(this);
-		}
-		
+		number0.addActionListener(this);
+		number1.addActionListener(this);
+		number2.addActionListener(this);
+		number3.addActionListener(this);
+		number4.addActionListener(this);
+		number5.addActionListener(this);
+		number6.addActionListener(this);
+		number7.addActionListener(this);
+		number8.addActionListener(this);
+		number9.addActionListener(this);
 		plusOperator.addActionListener(this);
 		minusOperator.addActionListener(this);
 		multiplicationOperator.addActionListener(this);
@@ -50,10 +61,16 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 		
 		addWindowListener(this);
 		
-		for(int i=0; i<listButtons.size(); i++) {
-			p.add(listButtons.get(i));			
-		}
-		
+		p.add(number0);
+		p.add(number1);
+		p.add(number2);
+		p.add(number3);
+		p.add(number4);
+		p.add(number5);
+		p.add(number6);
+		p.add(number7);
+		p.add(number8);
+		p.add(number9);
 		p.add(plusOperator);
 		p.add(minusOperator);
 		p.add(multiplicationOperator);
@@ -64,7 +81,7 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 		add(ta, BorderLayout.NORTH);
 		add(p, BorderLayout.CENTER);
 		
-		setBounds(500,100,300,400);
+		setBounds(500,100,500,500);
 		setVisible(true);
 	}
 	
@@ -77,7 +94,6 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 		Pattern p = Pattern.compile(regex);
 		
 		if(p.matcher(val).find()) {
-//			System.out.println(result);
 			if(lastOperator != "") {
 				prevOperator = lastOperator;	
 				lastOperator = "";
@@ -140,18 +156,10 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 				tempStr = "";
 				break;
 			case "*":
-				if(result == 0) {
-					result = 1;
-				}
-				
 				result *= Integer.parseInt(tempStr);
 				tempStr = "";
 				break;
 			case "/":
-				if(result == 0) {
-					result = Integer.parseInt(tempStr) * 2;
-				}
-				
 				result /= Integer.parseInt(tempStr);
 				tempStr = "";
 				break;
