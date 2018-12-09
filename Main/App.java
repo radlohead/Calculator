@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 class ActionEventCreate<T> extends Frame implements ActionListener, WindowListener {
 	Panel p;
@@ -99,8 +100,10 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 //			}
 //		}
 		
-		if(val.equals("0") || val.equals("1") || val.equals("2") || val.equals("3") || val.equals("4") ||
-				val.equals("5") || val.equals("6") || val.equals("7") || val.equals("8") || val.equals("9")) {
+		final String regex = "[0-9]";
+		Pattern p = Pattern.compile(regex);
+		
+		if(p.matcher(val).find()) {
 			ta.append(val);
 			tempStr += val;
 			ta.setText("");
