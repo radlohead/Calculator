@@ -20,7 +20,7 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 		super("ActionEventCreate");
 		
 		p = new Panel();
-		Label defaultExit = new Label("프레임의 종료버튼을 눌러주세요");
+		Label defaultExit = new Label("종료버튼을 눌러주세요");
 		
 		add(defaultExit);
 		
@@ -90,23 +90,14 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 		String val;
 		val = ae.getActionCommand();
 		
-//		if(name.equals("입력")) {
-//			ta.append("버튼이 입력되었습니다.\n");
-//		} else {
-//			ta.append("프로그램을 종료합니다.\n");
-//			try {
-//				Thread.sleep(2000);
-//			} catch(Exception e) {
-//				System.exit(0);
-//			}
-//		}
-		
 		final String regex = "[0-9]";
 		Pattern p = Pattern.compile(regex);
 		
 		if(p.matcher(val).find()) {
 			if(lastOperator != "") {
-				prevOperator = lastOperator;				
+				prevOperator = lastOperator;	
+				lastOperator = "";
+				ta.setText("");
 			}
 			
 			if(lastOperator == "=") {
@@ -115,37 +106,30 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 				result = 0;
 			}
 			
-			if(lastOperator != "") {
-				lastOperator = "";
-				ta.setText("");
-			}
-			
 			tempStr += val;
 			ta.append(val);
 		}
 		
-		if(val.equals("+")) {			
-			lastOperator = "+";
-			this.switchOperator();
-		}
-		
-		if(val.equals("-")) {
-			lastOperator = "-";
-			this.switchOperator();
-		}
-		
-		if(val.equals("*")) {			
-			lastOperator = "*";
-			this.switchOperator();
-		}
-		
-		if(val.equals("/")) {			
-			lastOperator = "/";
-			this.switchOperator();
-		}
-		
-		if(val.equals("=")) {
-			this.switchOperator();
+		switch(val) {
+			case "+":
+				lastOperator = "+";
+				this.finalOperator();
+				break;
+			case "-":
+				lastOperator = "-";
+				this.finalOperator();
+				break;
+			case "*":
+				lastOperator = "*";
+				this.finalOperator();
+				break;
+			case "/":
+				lastOperator = "/";
+				this.finalOperator();
+				break;
+			case "=":
+				this.finalOperator();
+				break;
 		}
 		
 		if (val.equals("종료")) {
@@ -153,7 +137,7 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 		}
 	}
 	
-	private void switchOperator() {
+	private void finalOperator() {
 		if (tempStr == "") {
 			return;
 		}
@@ -223,7 +207,7 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 	public void windowDeactivated(WindowEvent e) {
 		// TODO Auto-generated method stub
 		
-	}	
+	}
 }
 
 public class App {
