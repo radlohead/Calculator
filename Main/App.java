@@ -104,48 +104,42 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 		final String regex = "[0-9]";
 		Pattern p = Pattern.compile(regex);
 		
-		if(p.matcher(val).find()) {			
+		if(p.matcher(val).find()) {
 			if(lastOperator != "") {
-				ta.setText("");
+				prevOperator = lastOperator;				
+			}
+			
+			if(lastOperator == "=") {
 				lastOperator = "";
+				tempStr = "";
+				result = 0;
+			}
+			
+			if(lastOperator != "") {
+				lastOperator = "";
+				ta.setText("");
 			}
 			
 			tempStr += val;
 			ta.append(val);
 		}
 		
-		if(val.equals("+")) {
-			if(lastOperator != "") {
-				prevOperator = lastOperator;				
-			}
-			
+		if(val.equals("+")) {			
 			lastOperator = "+";
 			this.switchOperator();
 		}
 		
 		if(val.equals("-")) {
-			if(lastOperator != "") {
-				prevOperator = lastOperator;				
-			}
-			
 			lastOperator = "-";
 			this.switchOperator();
 		}
 		
-		if(val.equals("*")) {
-			if(lastOperator != "") {
-				prevOperator = lastOperator;				
-			}
-			
+		if(val.equals("*")) {			
 			lastOperator = "*";
 			this.switchOperator();
 		}
 		
-		if(val.equals("/")) {
-			if(lastOperator != "") {
-				prevOperator = lastOperator;				
-			}
-			
+		if(val.equals("/")) {			
 			lastOperator = "/";
 			this.switchOperator();
 		}
