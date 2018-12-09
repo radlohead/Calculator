@@ -13,6 +13,7 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 	TextArea ta;
 	private int result = 0;
 	private String tempStr = "";
+	private String prevOperator = "";
 	private String lastOperator = "";
 	
 	public ActionEventCreate(){
@@ -136,32 +137,29 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 	}
 	
 	public void sum() {
+		prevOperator = lastOperator;
 		lastOperator = "+";
 		
 		if (tempStr == "") {
 			return;
 		}
 		
-		result += Integer.parseInt(tempStr);
-		tempStr = "";
-		ta.setText("");
-		ta.append(Integer.toString(result));
+		this.switchOperator();
 	}
 	
 	private void minus() {
+		prevOperator = lastOperator;
 		lastOperator = "-";
 		
 		if (tempStr == "") {
 			return;
 		}
 		
-		result -= Integer.parseInt(tempStr);
-		tempStr = "";
-		ta.setText("");
-		ta.append(Integer.toString(result));
+		this.switchOperator();
 	}
 	
 	private void multiplicationOperator() {
+		prevOperator = lastOperator;
 		lastOperator = "*";
 		
 		if (tempStr == "") {
@@ -175,6 +173,7 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 	}
 	
 	private void divisionOperator() {
+		prevOperator = lastOperator;
 		lastOperator = "/";
 		
 		if (tempStr == "") {
@@ -188,7 +187,11 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 	}
 	
 	private void switchOperator() {
-		switch(lastOperator) {
+		if(prevOperator == "") {
+			prevOperator = lastOperator;
+		}
+		
+		switch(prevOperator) {
 			case "+":
 				result += Integer.parseInt(tempStr);
 				tempStr = "";
