@@ -104,27 +104,50 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 		final String regex = "[0-9]";
 		Pattern p = Pattern.compile(regex);
 		
-		if(p.matcher(val).find()) {
-			ta.append(val);
+		if(p.matcher(val).find()) {			
+			if(lastOperator != "") {
+				ta.setText("");
+				lastOperator = "";
+			}
+			
 			tempStr += val;
-			ta.setText("");
-			ta.append(Integer.toString(result));
+			ta.append(val);
 		}
 		
 		if(val.equals("+")) {
-			this.sum();
+			if(lastOperator != "") {
+				prevOperator = lastOperator;				
+			}
+			
+			lastOperator = "+";
+			this.switchOperator();
 		}
 		
 		if(val.equals("-")) {
-			this.minus();
+			if(lastOperator != "") {
+				prevOperator = lastOperator;				
+			}
+			
+			lastOperator = "-";
+			this.switchOperator();
 		}
 		
 		if(val.equals("*")) {
-			this.multiplicationOperator();
+			if(lastOperator != "") {
+				prevOperator = lastOperator;				
+			}
+			
+			lastOperator = "*";
+			this.switchOperator();
 		}
 		
 		if(val.equals("/")) {
-			this.divisionOperator();
+			if(lastOperator != "") {
+				prevOperator = lastOperator;				
+			}
+			
+			lastOperator = "/";
+			this.switchOperator();
 		}
 		
 		if(val.equals("=")) {
@@ -136,57 +159,11 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 		}
 	}
 	
-	public void sum() {
-		prevOperator = lastOperator;
-		lastOperator = "+";
-		
-		if (tempStr == "") {
-			return;
-		}
-		
-		this.switchOperator();
-	}
-	
-	private void minus() {
-		prevOperator = lastOperator;
-		lastOperator = "-";
-		
-		if (tempStr == "") {
-			return;
-		}
-		
-		this.switchOperator();
-	}
-	
-	private void multiplicationOperator() {
-		prevOperator = lastOperator;
-		lastOperator = "*";
-		
-		if (tempStr == "") {
-			return;
-		}
-		
-		result *= Integer.parseInt(tempStr);
-		tempStr = "";
-		ta.setText("");
-		ta.append(Integer.toString(result));
-	}
-	
-	private void divisionOperator() {
-		prevOperator = lastOperator;
-		lastOperator = "/";
-		
-		if (tempStr == "") {
-			return;
-		}
-		
-		result /= Integer.parseInt(tempStr);
-		tempStr = "";
-		ta.setText("");
-		ta.append(Integer.toString(result));
-	}
-	
 	private void switchOperator() {
+		if (tempStr == "") {
+			return;
+		}
+		
 		if(prevOperator == "") {
 			prevOperator = lastOperator;
 		}
