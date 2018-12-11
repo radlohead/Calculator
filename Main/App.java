@@ -6,7 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.regex.Pattern;
 
-class ActionEventCreate<T> extends Frame implements ActionListener, WindowListener {
+interface IActionEventCreate {
+	public void finalOperator();
+}
+
+class ActionEventCreate<T> extends Frame implements ActionListener, WindowListener, IActionEventCreate {
 	Panel p;
 	Button plusOperator, minusOperator, multiplicationOperator, divisionOperator, signOperator, exit;
 	List<Button> listButtons = new ArrayList<Button>();
@@ -114,7 +118,7 @@ class ActionEventCreate<T> extends Frame implements ActionListener, WindowListen
 		}
 	}
 	
-	private void finalOperator() {
+	public void finalOperator() {
 		if (tempStr == "") {
 			return;
 		}
